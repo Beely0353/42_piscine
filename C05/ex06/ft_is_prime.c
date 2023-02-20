@@ -1,50 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_is_prime.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 15:16:11 by biaroun           #+#    #+#             */
-/*   Updated: 2023/02/07 16:35:26 by biaroun          ###   ########.fr       */
+/*   Created: 2023/02/10 12:30:26 by biaroun           #+#    #+#             */
+/*   Updated: 2023/02/12 16:27:53 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *s)
+int	ft_sqrt(int nb)
 {
-	int	i;
+	long int	i;
 
 	i = 0;
-	while (s[i])
+	while (i * i < nb)
 		i++;
 	return (i);
 }
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+int	ft_is_prime(int nb)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	divider;
+	int	i;
 
-	i = ft_strlen(src);
-	j = -1;
-	if (i + 1 < size)
+	if (nb < 2 || (nb % 2 == 0 && nb != 2))
+		return (0);
+	i = ft_sqrt(nb) + 1;
+	divider = 3;
+	while (divider <= i)
 	{
-		while (++j < i + 1)
-			dest[j] = src[j];
+		if ((nb % divider) == 0)
+			return (0);
+		divider += 2;
 	}
-	else if (size)
-	{
-		while (++j < size - 1)
-			dest[j] = src[j];
-		dest[j] = '\0';
-	}
-	return (i);
+	return (1);
 }
-/*int main()
-{
-	char dest[5] = "test";
-	char src[5] = "r";
-
-	printf("%s\n",dest);
-	ft_strlcpy(dest, src, 2);
-}*/

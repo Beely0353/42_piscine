@@ -1,50 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 15:16:11 by biaroun           #+#    #+#             */
-/*   Updated: 2023/02/07 16:35:26 by biaroun          ###   ########.fr       */
+/*   Created: 2023/02/07 16:21:22 by biaroun           #+#    #+#             */
+/*   Updated: 2023/02/09 13:26:02 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *s)
+int	ft_strlen(char *str)
 {
-	int	i;
+	int	n;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	n = 0;
+	while (str[n])
+		n++;
+	return (n);
 }
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
 	unsigned int	j;
 
-	i = ft_strlen(src);
+	i = -1;
+	while (++i < size && *dest)
+		dest++;
+	if (i == size)
+		return (i + (unsigned int)ft_strlen(src));
 	j = -1;
-	if (i + 1 < size)
-	{
-		while (++j < i + 1)
-			dest[j] = src[j];
-	}
-	else if (size)
-	{
-		while (++j < size - 1)
-			dest[j] = src[j];
-		dest[j] = '\0';
-	}
-	return (i);
+	while (src[++j])
+		if (j < size - i - 1)
+			*dest++ = src[j];
+	*dest = '\0';
+	return (i + j);
 }
 /*int main()
 {
-	char dest[5] = "test";
-	char src[5] = "r";
+	char dst[10000] = "je";
+	char src[10] = " test";
 
-	printf("%s\n",dest);
-	ft_strlcpy(dest, src, 2);
+	printf("%d\n",strlcat(dst,src, 2));
 }*/

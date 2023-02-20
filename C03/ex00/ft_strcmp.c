@@ -1,50 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 15:16:11 by biaroun           #+#    #+#             */
-/*   Updated: 2023/02/07 16:35:26 by biaroun          ###   ########.fr       */
+/*   Created: 2023/02/06 16:43:40 by biaroun           #+#    #+#             */
+/*   Updated: 2023/02/07 16:40:14 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *s)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-	return (i);
-}
-
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	i = ft_strlen(src);
-	j = -1;
-	if (i + 1 < size)
-	{
-		while (++j < i + 1)
-			dest[j] = src[j];
-	}
-	else if (size)
-	{
-		while (++j < size - 1)
-			dest[j] = src[j];
-		dest[j] = '\0';
-	}
-	return (i);
+	return (s1[i] - s2[i]);
 }
 /*int main()
 {
-	char dest[5] = "test";
-	char src[5] = "r";
+	char a[] = "test";
+	char b[] = "test";
 
-	printf("%s\n",dest);
-	ft_strlcpy(dest, src, 2);
+	printf("%d\n", ft_strcmp(a,b));
 }*/

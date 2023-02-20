@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:09:13 by biaroun           #+#    #+#             */
-/*   Updated: 2023/02/06 16:26:58 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/02/07 16:33:50 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,6 @@ int	ft_isspace(int c)
 {
 	return (c == ' ' || c == '\t' || c == '\v'
 		|| c == '\n' || c == '\f' || c == '\r');
-}
-
-int	ft_base_len(char *base)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (base[i])
-	{
-		if (base[i] == '+' || base[i] == '-')
-			return (0);
-		if (ft_isspace(base[i]))
-			return (0);
-		j = i + 1;
-		while (base[j])
-			if (base[i] == base[j++])
-				return (0);
-		i++;
-	}
-	if (i < 2)
-		return (0);
-	return (i);
 }
 
 void	ft_putunbr_hexa(int nbr)
