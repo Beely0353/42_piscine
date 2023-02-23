@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:53:09 by biaroun           #+#    #+#             */
-/*   Updated: 2023/02/23 14:13:44 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/02/23 18:03:52 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int		check_error(char **av, int i);
 int		count_size_line(char *av);
 int		ft_check_option(char **av);
 int		ft_is_numeric(char *str);
+int		count_line(char *av);
+void	ft_tail_no(char **av);
 
 int		ft_print_offset_error(char *exec, char *offset);
 int		ft_print_missing_error(char *exec);

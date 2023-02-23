@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:49:17 by biaroun           #+#    #+#             */
-/*   Updated: 2023/02/23 15:28:08 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/02/23 19:08:41 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	display_tail(char *av, int n, int tret)
 	}
 	close (fd);
 }
+
 int	read_fd_in(void)
 {
 	char	c;
@@ -73,7 +74,7 @@ int	read_fd_in(void)
 
 void	ft_tail(char **av)
 {
-	int l;
+	int	l;
 	int	i;
 
 	l = 0;
@@ -85,14 +86,14 @@ void	ft_tail(char **av)
 	}
 	else
 	{
-		i = 3;	
+		i = 3;
 		l = ft_atoi(av[2]);
 	}
 	if (check_error(av, i))
 		return ;
 	while (av[i])
 	{
-		display_tail(av[i], l, 	count_size_line(av[i]));
+		display_tail(av[i], l, count_size_line(av[i]));
 		i++;
 	}
 }
@@ -115,7 +116,6 @@ int	main(int ac, char **av)
 			ft_tail(av);
 		}
 		else
-
 			ft_tail_no(av);
 	}
 	return (0);

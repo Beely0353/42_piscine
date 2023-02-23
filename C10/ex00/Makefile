@@ -4,12 +4,12 @@ BLU		=	\033[34m
 YEL		=	\033[33m
 EOC		=	\033[0m
 
-NAME 			= ft_cat
+NAME 			= ft_display_file
 
 SOURCES			=	./sources
 OBJECTS			=	./bin
 
-SRCS			=	ft_cat.c ft_putstr.c
+SRCS			=	display_file.c
 
 
 

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tailcount.c                                     :+:      :+:    :+:   */
+/*   ft_tail2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 17:48:23 by biaroun           #+#    #+#             */
-/*   Updated: 2023/02/23 17:59:20 by biaroun          ###   ########.fr       */
+/*   Created: 2023/02/23 17:48:55 by biaroun           #+#    #+#             */
+/*   Updated: 2023/02/23 19:06:43 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_tail.h"
 
-int	count_size_line(char *av)
+void	display_tail_no(char *av, int tret)
 {
 	int		i;
 	int		fd;
@@ -24,32 +24,29 @@ int	count_size_line(char *av)
 	sret = 0;
 	ret = 42;
 	fd = open(av, O_RDONLY);
+	while (sret < tret - 15)
+	{
+		ret = read(fd, str, 1);
+		if (str[0] == '\n')
+			sret += ret;
+	}
 	while (ret)
 	{
 		ret = read(fd, str, 1);
 		if (ret == 0)
 			break ;
-		sret += ret;
+		write (1, &str, 1);
 	}
 	close (fd);
-	return (sret);
 }
 
-int	count_line(char *av)
+void	ft_tail_no(char **av)
 {
-	char	str[2];
-	int		j;
-	int		ret;
-	int		fd;
+	int	i;
 
-	j = 0;
-	ret = 42;
-	fd = open(av, O_RDONLY);
-	while (ret)
-	{
-		ret = read(fd, str, 1);
-		if (str[0] == '\n')
-			j++;
-	}
-	return (j);
+	i = 0;
+	if (check_error(av, 1))
+		return ;
+	while (av[++i])
+		display_tail_no(av[i], count_line(av[i]));
 }

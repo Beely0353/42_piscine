@@ -9,7 +9,7 @@ NAME 			= ft_tail
 SOURCES			=	./sources
 OBJECTS			=	./bin
 
-SRCS			=	ft_tail.c ft_str.c ft_check.c ft_print.c ft_tailcount.c
+SRCS			=	ft_tail.c ft_tail2.c ft_str.c ft_check.c ft_print.c ft_tailcount.c
 
 
 
@@ -20,29 +20,20 @@ CC				=	gcc
 CINCLUDES		=	-I ./includes
 
 ${OBJECTS}/%.o: ${SOURCES}/%.c
-	@mkdir -p $(dir $@)
-	@printf "\r\033[K⏳ Compilation de ""$(YEL)${notdir $<}$(EOC). ⏳"
-	@${CC} ${CFLAGS} -o $@ -c $< ${CINCLUDES}
+	mkdir -p $(dir $@)
+	${CC} ${CFLAGS} -o $@ -c $< ${CINCLUDES}
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	@clear
-	@echo "✅ $(GRE)Compilation terminée.$(EOC) ✅"
-	@${CC} ${CFLAGS} -o ${NAME} ${OBJS}
+	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 
 clean:
-	@echo "🗑  $(RED)Supression des fichiers binaires (.o).$(EOC) 🗑"
-	@rm -rf ${OBJECTS}
+	rm -rf ${OBJECTS}
 
 fclean: clean
-	@echo "🗑  $(RED)Supression des executables et librairies.$(EOC) 🗑"
-	@rm -f ${NAME}
+	rm -f ${NAME}
 
 re: fclean all
 
-run: all
-	@clear
-	./${NAME}
-
-.PHONY:	all clean fclean re run
+.PHONY:	all clean fclean re

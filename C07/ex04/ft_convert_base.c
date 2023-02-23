@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:02:59 by biaroun           #+#    #+#             */
-/*   Updated: 2023/02/23 14:46:17 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:42:14 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ char	*ft_getunbr_base(int nbr, char *base)
 	if (nbr < 0)
 		nbr *= -1;
 	i = nbr;
-	i_size = ft_count(i, base_size);
+	i_size = 0;
 	while (i > 0)
-		i /= base_size;
+		i /= base_size, i_size++;
 	i_base = malloc(i_size + 1);
 	j = -1;
 	while (++j < i_size)
@@ -110,7 +110,7 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	nbr_from = ft_atoi_base(nbr, base_from);
 	return (ft_getnbr_base(nbr_from, base_to));
 }
-/*int main()
+int main()
 {
-	printf("%s\n",ft_convert_base("1000000", "01", "0123456789"));
-}*/
+	printf("%s\n",ft_convert_base("-1", "123456789", "123456"));
+}
