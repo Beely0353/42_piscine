@@ -6,7 +6,7 @@
 /*   By: biaroun <biaroun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:56:07 by biaroun           #+#    #+#             */
-/*   Updated: 2023/02/20 11:05:16 by biaroun          ###   ########.fr       */
+/*   Updated: 2023/02/23 14:48:26 by biaroun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	count_word(char *str, char *charset)
 			j++;
 			while (!sepcmp(str[i], charset) && str[i])
 				i++;
+			continue ;
 		}
 		i++;
 	}
@@ -68,18 +69,21 @@ char	**ft_split(char *str, char *charset)
 	int		j;
 	char	**r;
 
-	i = -1;
+	i = 0;
 	j = 0;
 	r = malloc(sizeof(char *) * count_word(str, charset) + 1);
 	if (!r)
 		return (0);
 	while (str[i])
 	{
-		i++;
 		if (!sepcmp(str[i], charset))
+		{
 			r[j++] = setline(str, &i, charset);
+			continue ;
+		}
+		i++;
 	}
-	r[j] = NULL;
+	r[j] = 0;
 	return (r);
 }
 
@@ -87,7 +91,7 @@ char	**ft_split(char *str, char *charset)
 int main()
 {
 	int	i = 0;
-	char **a = ft_split("je test"," ");
+	char **a = ft_split("je suis.la",".");
 
 	while (a[i])
 		printf("%s\n", a[i++]);
